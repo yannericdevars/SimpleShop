@@ -1,0 +1,8 @@
+parameters:
+    itemService.class: DW\SlideShowBundle\Service\ItemService
+    userService.args: getList
+
+services:
+    itemService:
+        class: "%itemService.class%"
+        #arguments: [%itemService.args%]

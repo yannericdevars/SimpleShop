@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta content="charset=utf-8">
+	<title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <br/><br/>
+    <form action="{{ path('dw_user_login') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+
+    <input type="submit" />
+    </form>
+    <br/><br/><br/>
+    {% if user_name is not null %}
+        Vous êtes connecté en tant que : <b>{{ user_name }}</b>
+    {% endif %}
+    <br/>
+    <br/>
+    {% if user_roles is not null %}
+        <ul>
+        {% for role in user_roles  %}
+            <li>{{ role }}</li>
+        {% endfor %}
+        </ul>
+        <br/><br/>
+        <ul>
+            <li><a href="{{ path('user') }}">Gérer les utilisateurs</a></li>
+            <li><a href="{{ path('role') }}">Gérer les rôles</a></li>
+        </ul>
+    {% endif %}
+    {% if gest_site is not null %}
+        <a href="{{ path('item') }}">Gérer les produits</a>
+    {% endif %}
+</body>
+</html>

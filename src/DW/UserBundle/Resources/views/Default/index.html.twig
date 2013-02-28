@@ -1,0 +1,10 @@
+<html>
+    <body>
+        {% if form is defined %}
+            <form action="{{ path('dw_user_homepage') }}" method="post" {{ form_enctype(form) }}>
+                {{ form_widget(form) }}
+                    <input type="submit" />
+            </form>
+        {% endif %}
+    </body>
+</html>

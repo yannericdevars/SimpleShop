@@ -1,0 +1,14 @@
+parameters:
+    userService.class: DW\UserBundle\Service\UserService
+    userService.args: verify
+    passwordUtilities.class: DW\UserBundle\Service\PasswordUtilities
+    passwordUtilities.args: passwordUtilities
+
+services:
+    userService:
+        class: "%userService.class%"
+        arguments: [%userService.args%]
+    passwordUtilities:
+        class: "%passwordUtilities.class%"
+        arguments: [%passwordUtilities.args%]
+  
