@@ -4,9 +4,17 @@ namespace DW\SlideShowBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-
+/**
+ * @author Yann-Eric Devars <yann-eric@live.fr>
+ * @version 1.0
+ */
 class DefaultController extends Controller
 {
+    /**
+     * Accueil de la boutique
+     * @param string $ref Référence
+     * @return template
+     */
     public function boutiqueAction($ref)
     {
         

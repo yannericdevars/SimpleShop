@@ -1,14 +1,8 @@
 <h1>Item list</h1>
-
 <table class="records_list">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Ref</th>
-            <th>Name</th>
-            <th>Definition_short</th>
-            <th>Definition</th>
-            <th>Actions</th>
+            <th>Id</th><th>Ref</th><th>Name</th><th>Definition_short</th><<th>Definition</th><th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -38,3 +32,5 @@
     <li><a href="{{ path('item_new') }}">Create a new entry</a></li>
     <li><a href="{{ path('image') }}">Gérer les images</a></li>
 </ul>
+<p>&nbsp;</p>
+{% include 'DWSlideShowBundle:Item:list_items.html.twig' with {'entities': entities} %}

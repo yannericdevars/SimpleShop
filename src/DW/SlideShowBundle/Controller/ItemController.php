@@ -18,6 +18,7 @@ class ItemController extends Controller {
      *
      */
     public function indexAction() {
+        
         $userService = $this->get("userService");
         $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
 
@@ -27,9 +28,9 @@ class ItemController extends Controller {
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('DWSlideShowBundle:Item')->findAll();
-
+        $server_adress = $_SERVER["HTTP_HOST"];
         return $this->render('DWSlideShowBundle:Item:index.html.twig', array(
-                    'entities' => $entities,
+                    'entities' => $entities, 'server_adress' => $server_adress
                 ));
     }
 

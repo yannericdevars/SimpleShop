@@ -1,13 +1,14 @@
 <?php
-/**
- * @author Yann-Eric <yann-eric@live.fr>
- */
 namespace DW\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use \DW\UserBundle\Entity\User;
 use \Symfony\Component\HttpFoundation\Request;
 
+/**
+ * @author Yann-Eric Devars <yann-eric@live.fr>
+ * @version 1.0
+ */
 class DefaultController extends Controller
 {
     /**

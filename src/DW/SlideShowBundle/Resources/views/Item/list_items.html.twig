@@ -1,0 +1,11 @@
+<table>
+    <tr><td>Adresses</td></tr>
+     {% for entity in entities %}
+    <tr>
+        <td>
+            <a href="{{ server_adress }}{{ path('dw_slide_show_homepage', {'ref' : entity.ref} ) }}">
+            {{ server_adress }}{{ path('dw_slide_show_homepage', {'ref' : entity.ref} ) }}</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
