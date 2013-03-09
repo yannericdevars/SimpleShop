@@ -85,3 +85,5 @@
 513ab93877dbf,::1,GET,http://localhost:8888/Shop/SimpleShop/web/app_dev.php/item/,1362803000,
 513abbdfcee79,::1,GET,http://localhost:8888/Shop/SimpleShop/web/app_dev.php/boutique/44,1362803679,
 513abbe76015e,::1,GET,http://localhost:8888/Shop/SimpleShop/web/app_dev.php/boutique/Reftest,1362803687,
+513ac69fcd19c,::1,GET,http://localhost:8888/Shop/SimpleShop/web/app_dev.php/item/,1362806431,
+513ac6f9bc7a9,::1,GET,http://localhost:8888/Shop/SimpleShop/web/app_dev.php/item/,1362806521,
