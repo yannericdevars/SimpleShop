@@ -1,0 +1,37 @@
+<h1>Response list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Text</th>
+            <th>Is published</th>
+            <th>Date_create</th>
+            <th>Actions</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('response_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.text }}</td>
+            <td>{% if entity.isActive == 1 %} XXX {% endif %}</td>
+            <td>{% if entity.datecreate %}{{ entity.datecreate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{% if entity.isActive != 1 %}
+                <a href="?publish=pub&id={{ entity.id }}">Publish</a>{% else %}
+                <a href="?publish=no_pub&id={{ entity.id }}">Depublish</a>{% endif %}
+                &nbsp;&nbsp;&nbsp;<a href="?publish=delete&id={{ entity.id }}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('response_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>

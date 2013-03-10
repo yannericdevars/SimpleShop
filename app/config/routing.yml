@@ -1,3 +1,7 @@
+dw_comments:
+    resource: "@DWCommentsBundle/Resources/config/routing.yml"
+    prefix:   /
+
 dw_slide_show:
     resource: "@DWSlideShowBundle/Resources/config/routing.yml"
     prefix:   /

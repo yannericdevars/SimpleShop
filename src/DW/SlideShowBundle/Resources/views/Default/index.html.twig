@@ -32,7 +32,8 @@
             <h2>{{ element.definition }}</h2><br/>
             <h3>{{ element.ref }}</h3><br/>
        {% endif %}
-    
+    {% include 'DWCommentsBundle:Default:form_response.html.twig' with { 'id_item': element.ref } %}
+    {% include 'DWCommentsBundle:Default:responses.html.twig' with { 'comments': comments } %}
 
     </header>
 

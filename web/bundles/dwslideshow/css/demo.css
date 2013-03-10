@@ -135,6 +135,7 @@ header h2 { margin: 0 0 30px; font: normal 20px Geogrotesque-regular, Helvetica,
 header .button { margin: 0 0 50px; padding: 10px 15px 10px 15px; display: block; float: left; position: relative; -webkit-transition: all .2s ease; -moz-transition: all .2s ease; transition: all .2s ease;}
 nav {clear: both;}
 nav h3 {margin: 0 0 10px; padding: 0 0 3px; font-size: 18px;text-shadow: 0 1px 1px #555; color: #fff; font-family: Geogrotesque-Regular, Helvetica, Arial, sans-serif; border-bottom: 1px solid #fff; border-bottom: 1px solid rgba(255,255,255,0.5); display: inline-block; }
+nav h4 {margin: 0 0 10px; padding: 0 0 3px; font-size: 18px;text-shadow: 0 1px 1px #555; color: #fff; font-family: Geogrotesque-Regular, Helvetica, Arial, sans-serif; border-bottom: 1px solid #fff; border-bottom: 1px solid rgba(255,255,255,0.5); display: inline-block; }
 nav li {margin: 0 0 7px; font-size: 15px; text-transform: lowercase;}
 nav li a:hover,
 nav li a.active {border-bottom: 1px dotted #fff; border-bottom: 1px dotted rgba(255,255,255,0.3); background: none;}

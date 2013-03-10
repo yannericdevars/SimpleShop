@@ -104,6 +104,137 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        if (0 === strpos($pathinfo, '/response')) {
+            // response
+            if (rtrim($pathinfo, '/') === '/response') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'response');
+                }
+
+                return array (  '_controller' => 'DW\\CommentsBundle\\Controller\\ResponseController::indexAction',  '_route' => 'response',);
+            }
+
+            // response_show
+            if (preg_match('#^/response/(?<id>[^/]+)/show$#s', $pathinfo, $matches)) {
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'DW\\CommentsBundle\\Controller\\ResponseController::showAction',)), array('_route' => 'response_show'));
+            }
+
+            // response_new
+            if ($pathinfo === '/response/new') {
+                return array (  '_controller' => 'DW\\CommentsBundle\\Controller\\ResponseController::newAction',  '_route' => 'response_new',);
+            }
+
+            // response_create
+            if ($pathinfo === '/response/create') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_response_create;
+                }
+
+                return array (  '_controller' => 'DW\\CommentsBundle\\Controller\\ResponseController::createAction',  '_route' => 'response_create',);
+            }
+            not_response_create:
+
+            // response_edit
+            if (preg_match('#^/response/(?<id>[^/]+)/edit$#s', $pathinfo, $matches)) {
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'DW\\CommentsBundle\\Controller\\ResponseController::editAction',)), array('_route' => 'response_edit'));
+            }
+
+            // response_update
+            if (preg_match('#^/response/(?<id>[^/]+)/update$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_response_update;
+                }
+
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'DW\\CommentsBundle\\Controller\\ResponseController::updateAction',)), array('_route' => 'response_update'));
+            }
+            not_response_update:
+
+            // response_delete
+            if (preg_match('#^/response/(?<id>[^/]+)/delete$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_response_delete;
+                }
+
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'DW\\CommentsBundle\\Controller\\ResponseController::deleteAction',)), array('_route' => 'response_delete'));
+            }
+            not_response_delete:
+
+            // responses_list
+            if ($pathinfo === '/response/list') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_responses_list;
+                }
+
+                return array (  '_controller' => 'DW\\CommentsBundle\\Controller\\ResponseController::listAction',  '_route' => 'responses_list',);
+            }
+            not_responses_list:
+
+        }
+
+        if (0 === strpos($pathinfo, '/subject')) {
+            // subject
+            if (rtrim($pathinfo, '/') === '/subject') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'subject');
+                }
+
+                return array (  '_controller' => 'DW\\CommentsBundle\\Controller\\SubjectController::indexAction',  '_route' => 'subject',);
+            }
+
+            // subject_show
+            if (preg_match('#^/subject/(?<id>[^/]+)/show$#s', $pathinfo, $matches)) {
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'DW\\CommentsBundle\\Controller\\SubjectController::showAction',)), array('_route' => 'subject_show'));
+            }
+
+            // subject_new
+            if ($pathinfo === '/subject/new') {
+                return array (  '_controller' => 'DW\\CommentsBundle\\Controller\\SubjectController::newAction',  '_route' => 'subject_new',);
+            }
+
+            // subject_create
+            if ($pathinfo === '/subject/create') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_subject_create;
+                }
+
+                return array (  '_controller' => 'DW\\CommentsBundle\\Controller\\SubjectController::createAction',  '_route' => 'subject_create',);
+            }
+            not_subject_create:
+
+            // subject_edit
+            if (preg_match('#^/subject/(?<id>[^/]+)/edit$#s', $pathinfo, $matches)) {
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'DW\\CommentsBundle\\Controller\\SubjectController::editAction',)), array('_route' => 'subject_edit'));
+            }
+
+            // subject_update
+            if (preg_match('#^/subject/(?<id>[^/]+)/update$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_subject_update;
+                }
+
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'DW\\CommentsBundle\\Controller\\SubjectController::updateAction',)), array('_route' => 'subject_update'));
+            }
+            not_subject_update:
+
+            // subject_delete
+            if (preg_match('#^/subject/(?<id>[^/]+)/delete$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_subject_delete;
+                }
+
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'DW\\CommentsBundle\\Controller\\SubjectController::deleteAction',)), array('_route' => 'subject_delete'));
+            }
+            not_subject_delete:
+
+        }
+
         // dw_slide_show_homepage
         if (0 === strpos($pathinfo, '/boutique') && preg_match('#^/boutique/(?<ref>[^/]+)$#s', $pathinfo, $matches)) {
             return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'DW\\SlideShowBundle\\Controller\\DefaultController::boutiqueAction',)), array('_route' => 'dw_slide_show_homepage'));

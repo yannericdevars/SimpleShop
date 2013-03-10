@@ -1,0 +1,35 @@
+response:
+    pattern:  /
+    defaults: { _controller: "DWCommentsBundle:Response:index" }
+
+response_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "DWCommentsBundle:Response:show" }
+
+response_new:
+    pattern:  /new
+    defaults: { _controller: "DWCommentsBundle:Response:new" }
+
+response_create:
+    pattern:  /create
+    defaults: { _controller: "DWCommentsBundle:Response:create" }
+    requirements: { _method: post }
+
+response_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "DWCommentsBundle:Response:edit" }
+
+response_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "DWCommentsBundle:Response:update" }
+    requirements: { _method: post }
+
+response_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "DWCommentsBundle:Response:delete" }
+    requirements: { _method: post }
+    
+responses_list:
+    pattern:  /list
+    defaults: { _controller: "DWCommentsBundle:Response:list" }
+    requirements: { _method: get }

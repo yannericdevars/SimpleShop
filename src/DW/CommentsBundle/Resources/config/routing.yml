@@ -1,0 +1,8 @@
+dw_comments_response:
+    resource: "@DWCommentsBundle/Resources/config/routing/response.yml"
+    prefix:   /response
+    
+DWCommentsBundle_subject:
+    resource: "@DWCommentsBundle/Resources/config/routing/subject.yml"
+    prefix:   /subject
+
