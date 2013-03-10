@@ -15,3 +15,5 @@
 [2013-03-09 05:37:29] request.INFO: Matched route "item" (parameters: "_controller": "DW\SlideShowBundle\Controller\ItemController::indexAction", "_route": "item") [] []
 [2013-03-09 05:37:29] request.CRITICAL: Exception: Not allowed (uncaught exception) at /Applications/MAMP/htdocs/Shop/SimpleShop/src/DW/UserBundle/Service/UserService.php line 101 [] []
 [2013-03-09 05:47:00] request.ERROR: Symfony\Component\HttpKernel\Exception\NotFoundHttpException: No route found for "GET /login/" (uncaught exception) at /Applications/MAMP/htdocs/Shop/SimpleShop/app/cache/prod/classes.php line 5078 [] []
+[2013-03-10 04:20:57] request.INFO: Matched route "dw_slide_show_homepage" (parameters: "_controller": "DW\SlideShowBundle\Controller\DefaultController::boutiqueAction", "ref": "44", "_route": "dw_slide_show_homepage") [] []
+[2013-03-10 04:20:57] request.CRITICAL: Doctrine\ORM\ORMException: Unknown Entity namespace alias 'DWCommentsBundle'. (uncaught exception) at /Applications/MAMP/htdocs/Shop/SimpleShop/vendor/doctrine/orm/lib/Doctrine/ORM/ORMException.php line 148 [] []

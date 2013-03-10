@@ -24,21 +24,19 @@ class DefaultController extends Controller
         
         $item = null;
         $images = null;
-        if (is_numeric($request->get('ref')))
+        if (is_numeric($request->get('ref')) && is_string($request->get('comments')))
         {
             $ref = $request->get('ref');
             $comment = $request->get('comments');
             
             $reponse = new Response();
             $subject = $this->getDoctrine()->getRepository('DWCommentsBundle:Subject')->findOneBy(array ('text' => $ref));
-//            
             $reponse->setIsActive(false);
             $reponse->setDateCreate(new \DateTime());
             $reponse->setSubject($subject);
             $reponse->setText($comment);
             
             $em = $this->getDoctrine()->getManager();
-//            $em->persist($subject);
             $em->persist($reponse);
             $em->flush();
             
