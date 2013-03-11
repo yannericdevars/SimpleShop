@@ -7,11 +7,21 @@
 */
 
 .title1 {
-    font: 30px;
-    color: red;
+    font-size: 30px;
+    color: black;
+ 
 }
 .title3 {
     font: 30px;
-    color: red;
+    color: white;
 }
 
+.simple_text {
+    font: 15px;
+    color: white;
+}
+
+.mini_text {
+    font: 5px;
+    color: white;
+}

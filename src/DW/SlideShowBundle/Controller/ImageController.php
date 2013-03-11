@@ -78,9 +78,9 @@ class ImageController extends Controller {
      *
      */
     public function createAction(Request $request) {
+        
         $userService = $this->get("userService");
         $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
-
 
         $entity = new Image();
         $form = $this->createForm(new ImageType(), $entity);
@@ -90,10 +90,63 @@ class ImageController extends Controller {
             $em = $this->getDoctrine()->getManager();
 
             $dir = 'shop_imgs/';
-
-
+           
             $entity->setLink($form['link']->getData()->getClientOriginalName());
             $form['link']->getData()->move($dir, $form['link']->getData()->getClientOriginalName());
+                      
+            
+            $tab_dim_image = getimagesize($dir.$entity->getLink());
+            
+            $L = $tab_dim_image[0];
+            $H = $tab_dim_image[1];
+            
+            $L_Max = 450;
+            $H_Max = 300;
+            
+            // Si l'image est plus large
+            if ($L > $H)
+            {
+                // On resize selon la largeur max
+                if ($L > $L_Max)
+                {   
+                   
+                     // On calcule la H en proportion
+                    $H = ($L_Max * $H)/$L;
+                     $L = $L_Max;
+                }
+                
+                    // On resize selon la hauteur max
+                if ($H > $H_Max)
+                {                   
+                   
+                     // On calcule la L en proportion
+                    $L = ($H_Max * $L)/$H;
+                     $H = $H_Max;
+                }
+                
+            }
+            // Sinon
+            else
+            {
+                 // On resize selon la hauteur max
+                if ($H > $H_Max)
+                {                   
+                   
+                     // On calcule la L en proportion
+                    $L = ($H_Max * $L)/$H;
+                     $H = $H_Max;
+                }
+                     
+                // On resize selon la largeur max
+                if ($L > $L_Max)
+                {   
+                   
+                     // On calcule la H en proportion
+                    $H = ($L_Max * $H)/$L;
+                     $L = $L_Max;
+                }
+            }
+
             $em->persist($entity);
             $em->flush();
 
