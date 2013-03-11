@@ -21,9 +21,13 @@ class DefaultController extends Controller
      */
     public function boutiqueAction(Request $request, $ref)
     {
-        
         $item = null;
         $images = null;
+        
+        /******************************************
+                  Partie des commentaires  
+        /******************************************/
+        
         if (is_numeric($request->get('ref')) && is_string($request->get('comments')))
         {
             $ref = $request->get('ref');
@@ -43,9 +47,7 @@ class DefaultController extends Controller
         }
         $item = $this->getDoctrine()->getRepository('DWSlideShowBundle:Item')->findOneBy(array ('ref' => $ref));
         
-        /******************************************
-                  Partie des commentaires  
-        /******************************************/
+
         $subject = $this->getDoctrine()->getRepository('DWCommentsBundle:Subject')->findOneBy(array('text' => $ref));
         $comments = null;
         if (is_object($subject))
@@ -56,7 +58,8 @@ class DefaultController extends Controller
                 'isActive'      => true
                 );        
             $comments = $this->getDoctrine()->getRepository('DWCommentsBundle:Response')->findBy($conditions);
-        }
+       
+            }
         
         /******************************************
                   Fin partie des commentaires  
@@ -67,8 +70,13 @@ class DefaultController extends Controller
             $images = $this->getDoctrine()->getRepository('DWSlideShowBundle:Image')->findBy(array ('item' => $item->getId()));
         }
           
+        /******************************************
+                  Partie traductions   
+        /******************************************/
         
-        $response = $this->render('DWSlideShowBundle:Default:index.html.twig', array('images' => $images, 'element' => $item, 'comments' => $comments));
+        $tab_traduct = $this->translateShop();
+        
+        $response = $this->render('DWSlideShowBundle:Default:index.html.twig', array('images' => $images, 'element' => $item, 'comments' => $comments, 'tab_traduct' => $tab_traduct));
         
         $as_parameter = $this->container->hasParameter('cache_home_page');
         $cache_home_page = 3600;
@@ -82,6 +90,23 @@ class DefaultController extends Controller
         return $response;
     }
     
-
+    /**
+     * Function de traduction de la boutique
+     */
+    private function translateShop()
+    {
+        $page_title = $this->get('translator')->trans('Boutique');
+        $tab_traduct['page_title'] = $page_title;
+        $lb_comments = $this->get('translator')->trans('Ici vous pouvez commenter');
+        $tab_traduct['comments'] = $lb_comments;
+        $submit = $this->get('translator')->trans('Proposer ...');
+        $tab_traduct['submit'] = $submit;
+        $write_here = $this->get('translator')->trans('Saisir ici ...');
+        $tab_traduct['write_here'] = $write_here;
+        $comments_list = $this->get('translator')->trans('Commentaires :');
+        $tab_traduct['comments_list'] = $comments_list;
+        
+        return $tab_traduct;
+    }
 
 }

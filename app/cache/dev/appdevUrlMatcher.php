@@ -163,13 +163,17 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             not_response_delete:
 
             // responses_list
-            if ($pathinfo === '/response/list') {
+            if (preg_match('#^/response/(?<id>[^/]+)/list/?$#s', $pathinfo, $matches)) {
                 if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
                     $allow = array_merge($allow, array('GET', 'HEAD'));
                     goto not_responses_list;
                 }
 
-                return array (  '_controller' => 'DW\\CommentsBundle\\Controller\\ResponseController::listAction',  '_route' => 'responses_list',);
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'responses_list');
+                }
+
+                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'DW\\CommentsBundle\\Controller\\ResponseController::listAction',)), array('_route' => 'responses_list'));
             }
             not_responses_list:
 

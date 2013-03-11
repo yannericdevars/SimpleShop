@@ -20,6 +20,9 @@ class ResponseController extends Controller
      */
     public function indexAction()
     {
+        $userService = $this->get("userService");
+        $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
+        
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('DWCommentsBundle:Response')->findAll();
@@ -35,6 +38,9 @@ class ResponseController extends Controller
      */
     public function showAction($id)
     {
+        $userService = $this->get("userService");
+        $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
+        
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('DWCommentsBundle:Response')->find($id);
@@ -56,6 +62,9 @@ class ResponseController extends Controller
      */
     public function newAction()
     {
+        $userService = $this->get("userService");
+        $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
+        
         $entity = new Response();
         $form   = $this->createForm(new ResponseType(), $entity);
 
@@ -71,6 +80,9 @@ class ResponseController extends Controller
      */
     public function createAction(Request $request)
     {
+        $userService = $this->get("userService");
+        $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN')); 
+        
         $entity  = new Response();
         $form = $this->createForm(new ResponseType(), $entity);
         $form->bind($request);
@@ -95,6 +107,9 @@ class ResponseController extends Controller
      */
     public function editAction($id)
     {
+        $userService = $this->get("userService");
+        $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
+        
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('DWCommentsBundle:Response')->find($id);
@@ -119,6 +134,9 @@ class ResponseController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
+        $userService = $this->get("userService");
+        $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
+        
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('DWCommentsBundle:Response')->find($id);
@@ -151,6 +169,9 @@ class ResponseController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
+        $userService = $this->get("userService");
+        $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
+        
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 
@@ -169,8 +190,11 @@ class ResponseController extends Controller
         return $this->redirect($this->generateUrl('response'));
     }
     
-    public function listAction(Request $request)
+    public function listAction(Request $request, $id)
     {
+        $userService = $this->get("userService");
+        $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
+        
         $action_todo = $request->get('publish');
         $id_todo = $request->get('id');
         
@@ -205,15 +229,19 @@ class ResponseController extends Controller
             
         }
         
-        $entities = $em->getRepository('DWCommentsBundle:Response')->findAll();
+        $entities = $em->getRepository('DWCommentsBundle:Response')->findBy(array('subject_id' => $id));
+        $subject = $em->getRepository('DWCommentsBundle:Subject')->findOneBy(array('id' => $id));
         
         return $this->render('DWCommentsBundle:Response:list.html.twig', array(
-            'entities' => $entities,
+            'entities' => $entities, 'subject' => $subject
         ));
     }
 
     private function createDeleteForm($id)
     {
+        $userService = $this->get("userService");
+        $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
+        
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
             ->getForm()

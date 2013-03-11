@@ -20,6 +20,9 @@ class SubjectController extends Controller
      */
     public function indexAction()
     {
+        $userService = $this->get("userService");
+        $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
+        
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('DWCommentsBundle:Subject')->findAll();
@@ -35,6 +38,9 @@ class SubjectController extends Controller
      */
     public function showAction($id)
     {
+        $userService = $this->get("userService");
+        $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
+        
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('DWCommentsBundle:Subject')->find($id);
@@ -56,6 +62,9 @@ class SubjectController extends Controller
      */
     public function newAction()
     {
+        $userService = $this->get("userService");
+        $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
+        
         $entity = new Subject();
         $form   = $this->createForm(new SubjectType(), $entity);
 
@@ -71,6 +80,9 @@ class SubjectController extends Controller
      */
     public function createAction(Request $request)
     {
+        $userService = $this->get("userService");
+        $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
+        
         $entity  = new Subject();
         $form = $this->createForm(new SubjectType(), $entity);
         $form->bind($request);
@@ -95,6 +107,9 @@ class SubjectController extends Controller
      */
     public function editAction($id)
     {
+        $userService = $this->get("userService");
+        $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
+        
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('DWCommentsBundle:Subject')->find($id);
@@ -119,6 +134,9 @@ class SubjectController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
+        $userService = $this->get("userService");
+        $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
+        
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('DWCommentsBundle:Subject')->find($id);
@@ -151,6 +169,9 @@ class SubjectController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
+        $userService = $this->get("userService");
+        $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
+        
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 
@@ -171,6 +192,9 @@ class SubjectController extends Controller
 
     private function createDeleteForm($id)
     {
+        $userService = $this->get("userService");
+        $userService->verify($this->getRequest()->getSession()->get('userAutentif'), array('ADMIN'));
+        
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
             ->getForm()

@@ -30,6 +30,6 @@ response_delete:
     requirements: { _method: post }
     
 responses_list:
-    pattern:  /list
+    pattern:  /{id}/list/
     defaults: { _controller: "DWCommentsBundle:Response:list" }
     requirements: { _method: get }

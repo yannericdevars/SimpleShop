@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
 	<meta content="charset=utf-8">
-	<title>Boutique</title>
+	<title>{{ tab_traduct['page_title'] }}</title>
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 	
   <!-- Syntax Highlighter -->
@@ -11,7 +11,8 @@
   <!-- Demo CSS -->
 	<link rel="stylesheet" href="{{ asset('bundles/dwslideshow/css/demo.css')}}" type="text/css" media="screen" />
 	<link rel="stylesheet" href="{{ asset('bundles/dwslideshow/css/flexslider.css')}}" type="text/css" media="screen" />
-	
+  <!-- main CSS -->	
+        <link rel="stylesheet" href="{{ asset('main.css')}}" type="text/css" media="screen" />
 	<!-- Modernizr -->
   <script src="{{ asset('bundles/dwslideshow/js/modernizr.js')}}"></script>
   
@@ -19,7 +20,7 @@
 <body class="loading">
 
 	<div id="top">
-		
+            <span class="title1">{{ tab_traduct['page_title'] }}</span>
 		
 	
 	</div>
@@ -27,13 +28,13 @@
   <div id="container" class="cf">
     <header role="navigation">
         {% if element is defined %}
-            <h1>{{ element.name }}</h1><br/>
-            <h2>{{ element.definitionShort }}</h2><br/>
-            <h2>{{ element.definition }}</h2><br/>
-            <h3>{{ element.ref }}</h3><br/>
+           <span class="title1">{{ element.name }}</span><br/>
+           <span class="title3">{{ element.definitionShort }}</span><br/>
+           <span class="simple_text">{{ element.definition }}</span><br/>
+           <span class="mini_text">{{ element.ref }}</span><br/>
        {% endif %}
     {% include 'DWCommentsBundle:Default:form_response.html.twig' with { 'id_item': element.ref } %}
-    {% include 'DWCommentsBundle:Default:responses.html.twig' with { 'comments': comments } %}
+    {% include 'DWCommentsBundle:Default:responses.html.twig' with { 'comments': comments, 'tab_traduct': tab_traduct } %}
 
     </header>
 

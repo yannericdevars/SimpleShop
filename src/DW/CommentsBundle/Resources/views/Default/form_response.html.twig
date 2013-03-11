@@ -1,13 +1,20 @@
-<form action="" method= "post" name="comments_form">
-    <table>
-        <tr>
-            <td>
-                <textarea cols="40" rows="5" name="comments">Commentaires ...</textarea>
-            </td>
-            <td>
-                <input type="hidden" name="ref" value="{{ id_item }}" />
-                <input type="submit" value="Valider" />
-            </td>
-        </tr>
-    </table>
-</form>
+<fieldset border="1">
+    <legend><span class="title3">{{ tab_traduct['comments'] }}</span></legend>
+    <form action="" method= "post" name="comments_form">
+        <table>
+            <tr>
+                <td>
+                    <textarea cols="40" rows="5" name="comments">{{ tab_traduct['write_here'] }}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="hidden" name="ref" value="{{ id_item }}" />
+                    <input type="submit" value="{{ tab_traduct['submit'] }}" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</fieldset>
+
+
